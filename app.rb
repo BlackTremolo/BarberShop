@@ -1,6 +1,19 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sqlite3'
+
+configure do 
+@db = SQLite3::Database.new 'barbershop.db'
+@db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+	"ID" INTEGER,
+	"Name" TEXT,
+	"Phone" TEXT,
+	"DateStamp" TEXT,
+	"Barber" TEXT,
+	"Color" TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT))'
+end
 
 #def validation 
 #	@error = hh.select {|k,v| params[k] == ""}.values.join(", ")
@@ -41,7 +54,7 @@ post '/visit' do
 	#end 	
 	
 	f = File.open('./public/users.txt', 'a')
-	f.write("User name:#{@user_name}, Phone:#{@phone}, Date and time:#{@date_time}, Hairdresser:#{@barber}, Color:#{@color}\n")
+	f.write("User name:#{@user_name}, Phone:#{@phone}, Date and time:#{@date_time}, Barber:#{@barber}, Color:#{@color}\n")
 	f.close
 
 	erb :visit
