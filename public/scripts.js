@@ -1,0 +1,1 @@
+<script type="text/javascript" src="/scripts.js"></script>  // это нужно скопировать в вид чтобы подключать скрипты из этого файлв
