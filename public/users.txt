@@ -5,4 +5,3 @@ User name:Mihser, Phone:147258, Date and time:24.05 18.00, Hairdresser:Walter Wh
 User name:ivan, Phone:1111, Date and time:30.05 , Hairdresser:Walter White
 User name:ivan, Phone:1111, Date and time:30.05 , Hairdresser:Walter White
 User name:elena, Phone:9516361693, Date and time:24.05 18.25, Hairdresser:Gus Fring, Color:#dbadff
-User name:, Phone:, Date and time:, Hairdresser:Walter White, Color:#7bd148User name:, Phone:, Date and time:, Hairdresser:Walter White, Color:#7bd148

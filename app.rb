@@ -25,7 +25,7 @@ post '/visit' do
 	@user_name = params[:username]
 	@phone = params[:phone]
 	@date_time = params[:datetime]
-	@hairdresser = params[:hairdresser]
+	@barber = params[:barber]
 	@color = params[:color]
 
 	hh ={:username => 'Введите имя', :phone => 'Введите телефон', :datetime => 'Введите дату и время'}
@@ -41,7 +41,7 @@ post '/visit' do
 	#end 	
 	
 	f = File.open('./public/users.txt', 'a')
-	f.write("User name:#{@user_name}, Phone:#{@phone}, Date and time:#{@date_time}, Hairdresser:#{@hairdresser}, Color:#{@color}\n")
+	f.write("User name:#{@user_name}, Phone:#{@phone}, Date and time:#{@date_time}, Hairdresser:#{@barber}, Color:#{@color}\n")
 	f.close
 
 	erb :visit
