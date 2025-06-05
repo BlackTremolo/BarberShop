@@ -11,9 +11,10 @@ end
 
 #Проверка наличия барбера в списке
 def is_barber_exists? db, name
-db.execute('select * from Barbers where name=?', [name]).length > 0
+db.execute('select * from Barbers where Name=?', [name]).length > 0
 end 
 
+#добавление нового барбера
 def seed_db db, barbers
 	barbers.each do |barber|	
 		if !is_barber_exists? db, barber
@@ -22,6 +23,11 @@ def seed_db db, barbers
 	end
 end
 
+before	do 
+db = db_get
+@barbers = db.execute 'select * from Barbers (Name)' 
+end
+	
 configure do 
 db = get_db
 db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
@@ -55,14 +61,24 @@ get '/about' do
 end 
 
 get '/visit' do  
+	
 	erb :visit
 end 
 get '/contacts' do  
 	erb :contacts
 end
+
 get '/showusers' do
-	erb :showusres
-end 
+ 	db = get_db
+   	
+   	@results = db.execute 'select * from Users order by id desc --' 
+	
+	erb :showusers		
+end
+
+get '/admin' do
+	erb :admin
+end 	
 
 post '/visit' do 
 	@user_name = params[:username]
@@ -103,10 +119,10 @@ post '/contacts' do
 	erb :contacts
 end	
 
-get '/showusers' do
- 	db = get_db
-   	
-   	@results = db.execute 'select * from Users order by id desc --' 
+post '/admin' do 
+	db = get_db	
+
+	@add_barber = params[:add_barber]
 	
-	erb :showusers		
-end
+	seed_db db, [@add_barber]
+end 	
