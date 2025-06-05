@@ -19,7 +19,15 @@ db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 	"Barber" TEXT,
 	"Color" TEXT,
 	PRIMARY KEY("ID" AUTOINCREMENT))'
+
+	db.execute 'CREATE TABLE IF NOT EXISTS "Barbers" (
+	"ID" INTEGER,
+	"Name" TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT))'
 end
+
+db = get_db	
+db.execute	'insert into Barbers (Name) values (?)',['Walter White']
 
 #def validation 
 #	@error = hh.select {|k,v| params[k] == ""}.values.join(", ")
@@ -78,3 +86,17 @@ post '/contacts' do
 
 	erb :contacts
 end	
+
+get '/showusers' do
+
+def user_order  
+  		db = get_db
+  		arr = []
+  		db.execute 'select * from Users order by id desc --' do |row| 
+  		arr[row]
+  		puts arr 
+  		end
+end
+	@users = user_order
+	erb :showusers		
+end
