@@ -23,9 +23,10 @@ def seed_db db, barbers
 	end
 end
 
+#Переменные из данного блока доступны во всех views
 before	do 
-db = db_get
-@barbers = db.execute 'select * from Barbers (Name)' 
+db = get_db
+@barbers = db.execute 'select * from Barbers' 
 end
 	
 configure do 
@@ -125,4 +126,6 @@ post '/admin' do
 	@add_barber = params[:add_barber]
 	
 	seed_db db, [@add_barber]
+
+	erb :admin
 end 	
