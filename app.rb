@@ -9,6 +9,19 @@ def get_db
  return db
 end
 
+#Проверка наличия барбера в списке
+def is_barber_exists? db, name
+db.execute('select * from Barbers where name=?', [name]).length > 0
+end 
+
+def seed_db db, barbers
+	barbers.each do |barber|	
+		if !is_barber_exists? db, barber
+			db.execute 'insert into Barbers (Name) values (?)', [barber]
+		end
+	end
+end
+
 configure do 
 db = get_db
 db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
@@ -24,10 +37,10 @@ db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 	"ID" INTEGER,
 	"Name" TEXT,
 	PRIMARY KEY("ID" AUTOINCREMENT))'
+
+	seed_db db, ['Jessie Pinkman', 'Walter Whte', 'Gus Fring','Mike Ehrmantraut']
 end
 
-#db = get_db	
-#db.execute	'insert into Barbers (Name) values (?)',['Walter White']
 
 #def validation 
 #	@error = hh.select {|k,v| params[k] == ""}.values.join(", ")
@@ -46,6 +59,9 @@ get '/visit' do
 end 
 get '/contacts' do  
 	erb :contacts
+end
+get '/showusers' do
+	erb :showusres
 end 
 
 post '/visit' do 
