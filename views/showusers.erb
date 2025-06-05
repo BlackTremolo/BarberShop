@@ -1,5 +1,17 @@
-<table class="table">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Date and Time</th>
+			<th>Barber</th>
+			<th>Color</th>
+		</tr>
 	
+	</thead>	
+
+	<tbody>
 	<% @results.each do |row| %>
 	
 	<tr>
@@ -12,4 +24,5 @@
 	</tr>
 	
 	<% end %>
+	</tbody>
 </table>
