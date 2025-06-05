@@ -19,12 +19,13 @@
 
   <div class="form-group">
     <label>Выберите парикмахера</label>
-    <select name="hairdresser">
+    <select name="barber">
       <option <%= @barber == 'Walter White'? 'selected' : '' %>>Walter White</option>
       <option <%= @barber == 'Jessie Pinkman'? 'selected' : '' %>>Jessie Pinkman</option>
       <option <%= @barber == 'Gus Fring'? 'selected' : '' %>>Gus Fring</option>
     </select>
   </div>
+ 
   <div>
     <label>Выберите цвет в который хотите покраситься:</label>
     <select id="color" name="color">
